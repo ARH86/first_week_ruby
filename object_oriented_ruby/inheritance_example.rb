@@ -22,11 +22,12 @@ end
 
 
 class Car < Vehicle
-  def initialize(input_options)
-    super
-    @make = input_options[:make]
-    @model = input_options[:model]
-    @fuel = input_options[:fuel]
+  attr_reader :make, :model, :fuel
+  def initialize(car_options)
+    super()
+    @make = car_options[:make]
+    @model = car_options[:model]
+    @fuel = car_options[:fuel]
   end
   
   def honk_horn
@@ -35,12 +36,12 @@ class Car < Vehicle
 end
 
 class Bike < Vehicle
-  def initialize(input_options)
-    super
-    @speed = input_options[:speed]
-    @direction = input_options[:direction]
-    @type = input_options[:type]
-    @weight = input_options[:weight]
+  def initialize(bike_options)
+    super()
+    @speed = bike_options[:speed]
+    @direction = bike_options[:direction]
+    @type = bike_options[:type]
+    @weight = bike_options[:weight]
   end
 
   def brake
@@ -61,7 +62,10 @@ class Bike < Vehicle
 end
 
 
-p car = Car.new({fuel: "premium"})
+p car = Car.new(fuel: "premium",
+                 make: "Toyota", 
+                 model: "Corolla"
+               )
 car.honk_horn
 
 p bike = Bike.new({speed: 20})
